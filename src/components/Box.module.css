@@ -1,0 +1,12 @@
+.box {
+  width: 10rem;
+  height: 10rem;
+  border: solid 1px black;
+  color: #fff;
+  font-size: 4rem;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
