@@ -9,4 +9,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: 0.3s all ease-out;
+}
+.box:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 56em) {
+  .box {
+    width: 8rem;
+    height: 8rem;
+    font-size: 3.6rem;
+  }
+}
+@media (max-width: 31.25em) {
+  .box {
+    width: 5rem;
+    height: 5rem;
+    font-size: 3rem;
+  }
 }

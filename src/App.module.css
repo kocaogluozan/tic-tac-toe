@@ -1,5 +1,6 @@
 .game {
   height: 100vh;
+  width: 100vw;
   background-image: linear-gradient(
     to right,
     rgb(57, 87, 219),
@@ -19,5 +20,26 @@ h1 {
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
   width: 36rem;
+  margin: 3rem;
+}
+.container {
+  display: flex;
+  align-items: center;
+  max-width: 80rem;
   margin: 0 auto;
+}
+@media (max-width: 56em) {
+  .container {
+    max-width: 60rem;
+    justify-content: center;
+  }
+}
+@media (max-width: 31.25em) {
+  .container {
+    max-width: 60rem;
+    justify-content: center;
+  }
+  h1 {
+    font-size: 3rem;
+  }
 }

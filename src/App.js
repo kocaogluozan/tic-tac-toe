@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import styles from "./App.module.css";
 
 import Box from ".//components/Box";
+import GameStatus from "./components/GameStatus";
+
 //Initial Game Board
 const INITIAL_BOARD = ["", "", "", "", "", "", "", "", ""];
 
@@ -18,23 +20,28 @@ const WINNING_COMBOS_CHECK = [
 const App = () => {
   const [boardValues, setBoardValues] = useState(INITIAL_BOARD);
   const [currentPlayer, setCurrentPlayer] = useState("O");
+  const [finalMessage, setFinalMessage] = useState("Good Luck!");
 
   const changePlayer = () => {
     setCurrentPlayer(currentPlayer === "X" ? "O" : "X");
   };
   const resetTheBoard = () => {
     setBoardValues(INITIAL_BOARD);
+    setCurrentPlayer("X");
   };
 
   const winningHandler = () => {
-    window.alert(`${currentPlayer} won the game.`);
+    // window.alert(`${currentPlayer} won the game.`);
+    setFinalMessage(`Congratulations, ${currentPlayer} won the game!`);
     resetTheBoard();
   };
   const drawHandler = () => {
-    window.alert("Draw!.");
+    // window.alert("Draw!.");
+    setFinalMessage("There is no winner. DRAW!");
     resetTheBoard();
   };
   const BoxClickHandler = (event) => {
+    setFinalMessage("Good Luck!");
     //The index of clicked box
     const boxIndex = Number(event.target.getAttribute("box-index"));
 
@@ -70,6 +77,7 @@ const App = () => {
       }
       if (a === b && b === c) {
         gameWon = true;
+
         break;
       }
     }
@@ -78,6 +86,7 @@ const App = () => {
         winningHandler();
       }, 500);
     }
+
     if (!boardValues.includes("") && !gameWon) {
       setTimeout(() => {
         drawHandler();
@@ -89,8 +98,17 @@ const App = () => {
   return (
     <div className={styles.game}>
       <h1 className={styles.h1}>Tic Tac Toe</h1>
-      <div className={styles.board}>
-        <Box board={boardValues} onClick={BoxClickHandler} />
+      <div className={styles.container}>
+        <div className={styles.board}>
+          <Box board={boardValues} onClick={BoxClickHandler} />
+        </div>
+        <div>
+          <GameStatus
+            currentPlayer={currentPlayer}
+            resetBoard={resetTheBoard}
+            message={finalMessage}
+          />
+        </div>
       </div>
     </div>
   );

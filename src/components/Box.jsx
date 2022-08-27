@@ -11,7 +11,9 @@ const Box = ({ board, onClick }) => {
             box-index={index}
             onClick={onClick}
           >
-            {player}
+            <span style={{ color: player === "X" ? "pink" : "yellow" }}>
+              {player}
+            </span>
           </div>
         );
       })}
